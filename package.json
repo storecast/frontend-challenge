@@ -1,0 +1,19 @@
+{
+  "name": "frontend-challenge",
+  "version": "1.0.0",
+  "description": "Storecast frontend challenge",
+  "main": "index.js",
+  "scripts": {
+  },
+  "dependencies": {
+    "sdk": "./sdk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/storecast/frontend-challenge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/storecast/frontend-challenge/issues"
+  },
+  "homepage": "https://github.com/storecast/frontend-challenge#readme"
+}

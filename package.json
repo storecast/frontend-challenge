@@ -15,22 +15,26 @@
   "dependencies": {
     "mobx": "^3.1.0",
     "mobx-react": "^4.1.0",
-    "next": "^2.0.0-beta",
+    "next": "^2.0.0-beta.35",
+    "postcss-cssnext": "^2.9.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "sdk": "./sdk",
+    "styled-jsx-postcss": "^0.1.5",
     "validator": "^7.0.0"
   },
   "devDependencies": {
+    "@types/node": "^7.0.5",
     "@types/react": "^15.0.1",
     "@types/validator": "^6.2.0",
+    "babel-cli": "^6.23.0",
     "concurrently": "^3.1.0",
     "mobx-react-devtools": "^4.2.11",
     "typescript": "^2.2.1"
   },
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" next",
-    "build": "next build",
+    "dev": "concurrently \"tsc --watch\" \"babel . --out-dir . --ignore node_modules -x \".jsx\" --watch\" next",
+    "build": "tsc && babel . --out-dir . --ignore node_modules -x \".jsx\" && next build",
     "start": "next start"
   }
 }

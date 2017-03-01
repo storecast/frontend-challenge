@@ -3,7 +3,6 @@ import { inject, observer } from 'mobx-react'
 import { Store } from '../modules/store'
 import TextField from './TextField'
 import Button from './Button'
-import Router from 'next/router'
 import { spacing } from '../modules/theme'
 
 interface Props {
@@ -12,7 +11,7 @@ interface Props {
 
 const StepEmail = (props: Props) => {
   const onSubmit: React.EventHandler<any> = e => {
-    props.store.checkEmail().then(registered => registered && Router.push('/register'))
+    props.store.checkEmail()
     e.preventDefault()
   }
   return (

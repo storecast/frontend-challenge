@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Router from 'next/router'
 import { inject, observer } from 'mobx-react'
 import { Store } from '../modules/store'
 import TextField from './TextField'
@@ -13,7 +12,7 @@ interface Props {
 
 const StepRegister = (props: Props) => {
   const onSubmit: React.EventHandler<any> = e => {
-    props.store.register().then(registered => registered && Router.push('/confirmation'))
+    props.store.register()
     e.preventDefault()
   }
 

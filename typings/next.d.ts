@@ -16,7 +16,7 @@ declare module 'next/link' {
 
 declare module 'next/router' {
   export default class Router {
-    static push(s: string): void
-    static prefetch(s: string): void
+    static push(s: string): Promise<any>
+    static prefetch(s: string): Promise<any>
   }
 }

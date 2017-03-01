@@ -1,6 +1,8 @@
 import { action, observable } from 'mobx'
 import { FieldName, IForm, IField, initForm, validateForm, validateEmail } from './form'
 import { createUser, User } from '../sdk/index'
+import Router from 'next/router'
+import { safely, isOk } from './safely'
 
 let store: Store | null = null
 
@@ -22,25 +24,21 @@ export class Store {
     field.value = value
   }
 
-  @action checkEmail = (): Promise<boolean> => {
+  @action checkEmail = async(): Promise<any> => {
     const email = this.form.email
     const validEmail = validateEmail(email)
     if (!validEmail) {
-      return Promise.resolve(false)
+      return
     }
     this.pending = true
-    // TODO check for existing email.
-    return new Promise((resolve) => setTimeout(() => resolve(true), 500))
-      .then(() => {
-        this.pending = false
-        return true
-      })
+    await Router.push('/register')
+    this.pending = false
   }
 
-  @action register = (): Promise<boolean> => {
+  @action register = async(): Promise<any> => {
     const validated = validateForm(this.form)
     if (!validated) {
-      return Promise.resolve(false)
+      return
     }
     const user = {
       name: validated.name,
@@ -49,16 +47,16 @@ export class Store {
       newsletter: validated.newsletter
     }
     this.pending = true
-    return createUser(user).then(result => {
-      this.user = result.user
-      this.token = result.token
+    const createResult = await safely(createUser(user))
+    if (isOk(createResult)) {
+      this.user = createResult.value.user
+      this.token = createResult.value.token
+      await Router.push('/confirmation')
       this.pending = false
-      return true
-    }).catch(error => {
-      // FIXME implement error handling
+    } else {
+      //todo error handling
       this.pending = false
-      return false
-    })
+    }
   }
 }
 

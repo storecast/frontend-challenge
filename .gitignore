@@ -1,4 +1,8 @@
 node_modules
 **/*.js
 **/*.js.map
+**/*.jsx
+**/*.jsx.map
 /.next/
+!babel-preset.js
+!postcss.config.js

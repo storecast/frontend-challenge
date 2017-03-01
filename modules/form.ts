@@ -24,7 +24,7 @@ export interface IValidForm {
   newsletter: Newsletter,
 }
 
-function initField(defaultValue: string = ''): IField {
+export function initField(defaultValue: string = ''): IField {
   return {
     value: defaultValue,
     error: false,

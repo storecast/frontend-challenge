@@ -1,3 +1,5 @@
+// no typing available yet for next 2.
+
 declare module 'next/head' {
   import * as React from 'react';
 
@@ -13,9 +15,8 @@ declare module 'next/link' {
 }
 
 declare module 'next/router' {
-  function makeGreeting(s: string): string;
-
   export default class Router {
     static push(s: string): void
+    static prefetch(s: string): void
   }
 }

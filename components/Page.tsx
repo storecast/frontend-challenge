@@ -22,7 +22,7 @@ export default (props: Props) => {
       <Provider store={store}>
         <div className="wrapper">
           <div className="logo">
-            <image className="icon" src="/static/icon.png"/>
+            <img className="icon" src="/static/icon.png"/>
             <span>Frontend Challenge</span>
           </div>
           <div className="inner">

@@ -1,12 +1,12 @@
-
-interface User {
+// user-friendlier when exported!
+export interface User {
   name: string
   age: number
   email: string
   newsletter: 'daily' | 'weekly' | 'monthly'
 }
 
-interface TokenResponse {
+export interface TokenResponse {
   user: User
   token: string
 }

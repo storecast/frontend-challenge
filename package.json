@@ -2,12 +2,8 @@
   "name": "frontend-challenge",
   "version": "1.0.0",
   "description": "Storecast frontend challenge",
-  "main": "index.js",
-  "scripts": {
-  },
-  "dependencies": {
-    "sdk": "./sdk"
-  },
+  "license": "MIT",
+  "author": "Pierre-Henri Toussaint",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/storecast/frontend-challenge.git"
@@ -15,5 +11,32 @@
   "bugs": {
     "url": "https://github.com/storecast/frontend-challenge/issues"
   },
-  "homepage": "https://github.com/storecast/frontend-challenge#readme"
+  "homepage": "https://github.com/storecast/frontend-challenge#readme",
+  "dependencies": {
+    "mobx": "^3.1.0",
+    "mobx-react": "^4.1.0",
+    "next": "^2.0.0-beta.35",
+    "postcss-cssnext": "^2.9.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "styled-jsx-postcss": "^0.1.5",
+    "validator": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^18.1.1",
+    "@types/node": "^7.0.5",
+    "@types/react": "^15.0.1",
+    "@types/validator": "^6.2.0",
+    "babel-cli": "^6.23.0",
+    "concurrently": "^3.1.0",
+    "jest": "^19.0.2",
+    "mobx-react-devtools": "^4.2.11",
+    "typescript": "^2.2.1"
+  },
+  "scripts": {
+    "dev": "concurrently \"tsc --watch\" \"babel . --out-dir . --ignore node_modules -x \".jsx\" --watch\" next",
+    "build": "tsc && babel . --out-dir . --ignore node_modules -x \".jsx\" && next build",
+    "start": "next start",
+    "test": "tsc && jest"
+  }
 }

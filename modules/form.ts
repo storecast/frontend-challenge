@@ -61,7 +61,7 @@ export function validateName(name: IField): string | null {
 
 export function validateAge(age: IField): number | null {
   const ageN = parseInt(age.value)
-  if (!validator.isNumeric(age.value) || ageN < 13 || ageN > 120) {
+  if (!validator.isNumeric(age.value) || ageN < 1 || ageN > 120) {
     age.error = true
     return null
   }

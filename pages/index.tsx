@@ -1,9 +1,12 @@
 import * as React from 'react'
 import Page from '../components/Page'
-import RegisterWizard from '../components/Wizard'
+import EmailForm from '../components/EmailForm'
 
 export default () => (
   <Page>
-    <RegisterWizard />
+    <div>
+      <h1>Welcome to Storecast!</h1>
+      <EmailForm/>
+    </div>
   </Page>
 )

@@ -1,15 +1,10 @@
-import { action, observable, computed } from 'mobx'
-import { FieldName, IForm, IField, initForm, validateForm, validateEmail } from './registerForm'
-import { createUser, User } from './sdk/index'
+import { action, observable } from 'mobx'
+import { FieldName, IForm, IField, initForm, validateForm, validateEmail } from './form'
+import { createUser, User } from '../sdk/index'
 
 let store: Store | null = null
 
-export type Step = 'email' | 'register'
-
 export class Store {
-
-  @observable step: Step = 'email'
-
   @observable form: IForm = initForm()
 
   @observable isRegistered: boolean = false
@@ -20,24 +15,26 @@ export class Store {
 
   @observable pending: boolean = false
 
-  @computed get isRegisterDisabled() {
-    let hasPristine = !!Object.keys(this.form).find((fieldName) => (<IField>this.form[fieldName]).pristine)
-    return this.pending || hasPristine
-  }
-
   @action updateForm = (fieldName: FieldName, value: string) => {
     const field: IField = this.form[fieldName]
     field.pristine = false
+    field.error = false
     field.value = value
   }
 
-  @action checkEmail = () => {
+  @action checkEmail = (): Promise<boolean> => {
     const email = this.form.email
     const validEmail = validateEmail(email)
     if (!validEmail) {
-      return
+      return Promise.resolve(false)
     }
-    this.step = 'register'
+    this.pending = true
+    // TODO check for existing email.
+    return new Promise((resolve) => setTimeout(() => resolve(true), 500))
+      .then(() => {
+        this.pending = false
+        return true
+      })
   }
 
   @action register = (): Promise<boolean> => {
@@ -62,10 +59,6 @@ export class Store {
       this.pending = false
       return false
     })
-  }
-
-  @action start = () => {
-    this.step = 'email'
   }
 }
 

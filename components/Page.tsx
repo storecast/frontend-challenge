@@ -52,6 +52,9 @@ export default (props: Props) => {
           border: none;
           padding: 0;
         }
+        h1 {
+          margin-bottom: 3rem;
+        }
         h3 {
           color: ${secondaryTextColor};
         }
